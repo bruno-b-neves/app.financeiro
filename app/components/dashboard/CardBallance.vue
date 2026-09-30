@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-3xl p-4">
+  <div class="bg-white rounded-3xl p-4 border border-stone-200">
     <div class="flex items-center justify-between">
       <!-- Icon | Currency balance | options -->
       <div class="flex items-center gap-2">

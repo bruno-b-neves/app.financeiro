@@ -1,9 +1,10 @@
 <template>
   <div class="grid grid-cols-12 gap-4">
+    <!-- Header Principal -->
     <div :class="isCollapsed ? 'col-span-12' : 'col-span-12'">
       <div class="flex items-center justify-between">
         <div class="flex flex-col leading-6">
-          <h1 class="text-3xl">Overview</h1>
+          <h1 class="text-3xl font-bold text-stone-900">Overview</h1>
           <span class="text-stone-500 font-extralight"
             >Here is the summary of overall data</span
           >
@@ -30,7 +31,7 @@
             />
           </div>
           <button
-            class="flex items-center text-center gap-2 bg-white text-stone-500 rounded-3xl px-4 py-1.5 border border-stone-200 focus-within:border-stone-500 focus-within:ring-1 focus-within:ring-stone-300"
+            class="flex items-center text-center gap-2 bg-white text-stone-500 rounded-3xl px-4 py-1.5 border border-stone-200 focus-within:border-stone-500 focus-within:ring-1 focus-within:ring-stone-300 hover:bg-stone-50 transition-colors"
           >
             <Icon
               name="material-symbols:refresh-rounded"
@@ -43,6 +44,7 @@
       </div>
     </div>
 
+    <!-- Cards de Saldo / Metas / Investimentos -->
     <div
       :class="isCollapsed ? 'col-span-4' : 'col-span-4'"
       v-for="(item, index) in itemsBallance"
@@ -62,17 +64,24 @@
         />
       </div>
     </div>
+
+    <!-- Card Smart Wallet (Esquerda) -->
     <div :class="isCollapsed ? 'col-span-5' : 'col-span-5'">
       <div class="grid grid-cols-1 gap-3">
         <DashboardCard>
           <div class="flex flex-col flex-1">
-            <div class="flex items-center justify-between">
+            <!-- Header Alinhado -->
+            <div class="flex items-start justify-between">
               <div class="flex flex-col">
-                <p class="font-medium text-xl/8">Smart Wallet</p>
-                <p class="text-stone-400 text-xs">Today 1 USD = R$ 5,17 BRL</p>
+                <p class="font-medium text-xl leading-snug text-stone-900">
+                  Smart Wallet
+                </p>
+                <p class="text-stone-400 text-xs mt-0.5">
+                  Today 1 USD = R$ 5,17 BRL
+                </p>
               </div>
               <button
-                class="flex items-center text-center gap-1 text-sm bg-white text-stone-900 rounded-3xl px-4 py-1.5 border border-stone-200 focus-within:border-stone-500 focus-within:ring-1 focus-within:ring-stone-300"
+                class="flex items-center text-center gap-1 text-sm bg-white text-stone-900 rounded-3xl px-4 py-1.5 border border-stone-200 hover:bg-stone-50 transition-colors"
               >
                 <Icon
                   name="material-symbols:add-2-rounded"
@@ -83,145 +92,90 @@
                 Add New
               </button>
             </div>
-          </div>
 
-          <div class="mt-8 grid grid-cols-2 gap-3">
-            <div class="bg-stone-100 p-4 rounded-xl flex flex-col gap-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <Icon name="circle-flags:us" size="2em" />
-                  <div class="flex flex-col">
-                    <p class="font-medium text-sm">USD</p>
+            <!-- Grid de Moedas USD -->
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <div
+                v-for="i in 4"
+                :key="i"
+                class="bg-stone-100 p-4 rounded-xl flex flex-col gap-2"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <Icon name="circle-flags:us" size="2em" />
+                    <div class="flex flex-col">
+                      <p class="font-medium text-sm">USD</p>
+                    </div>
                   </div>
+                  <Icon
+                    name="material-symbols:more-vert"
+                    size="1.5em"
+                    class="cursor-pointer text-stone-500"
+                  />
                 </div>
-                <Icon name="material-symbols:more-vert" size="1.5em" />
-              </div>
-              <div class="mt-3 flex flex-col">
-                <span class="text-2xl font-medium text-stone-900">$125.00</span>
-                <span class="text-sm text-stone-500"
-                  >Limit is $10k a month</span
-                >
-                <span class="text-emerald-500 mt-4"> Active </span>
-              </div>
-            </div>
-            <div class="bg-stone-100 p-4 rounded-xl flex flex-col gap-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <Icon name="circle-flags:us" size="2em" />
-                  <div class="flex flex-col">
-                    <p class="font-medium text-sm">USD</p>
-                  </div>
+                <div class="mt-3 flex flex-col">
+                  <span class="text-2xl font-medium text-stone-900"
+                    >$125.00</span
+                  >
+                  <span class="text-sm text-stone-500"
+                    >Limit is $10k a month</span
+                  >
+                  <span class="text-emerald-500 mt-4 font-medium">
+                    Active
+                  </span>
                 </div>
-                <Icon name="material-symbols:more-vert" size="1.5em" />
-              </div>
-              <div class="mt-3 flex flex-col">
-                <span class="text-2xl font-medium text-stone-900">$125.00</span>
-                <span class="text-sm text-stone-500"
-                  >Limit is $10k a month</span
-                >
-                <span class="text-emerald-500 mt-4"> Active </span>
-              </div>
-            </div>
-            <div class="bg-stone-100 p-4 rounded-xl flex flex-col gap-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <Icon name="circle-flags:us" size="2em" />
-                  <div class="flex flex-col">
-                    <p class="font-medium text-sm">USD</p>
-                  </div>
-                </div>
-                <Icon name="material-symbols:more-vert" size="1.5em" />
-              </div>
-              <div class="mt-3 flex flex-col">
-                <span class="text-2xl font-medium text-stone-900">$125.00</span>
-                <span class="text-sm text-stone-500"
-                  >Limit is $10k a month</span
-                >
-                <span class="text-emerald-500 mt-4"> Active </span>
-              </div>
-            </div>
-            <div class="bg-stone-100 p-4 rounded-xl flex flex-col gap-2">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <Icon name="circle-flags:us" size="2em" />
-                  <div class="flex flex-col">
-                    <p class="font-medium text-sm">USD</p>
-                  </div>
-                </div>
-                <Icon name="material-symbols:more-vert" size="1.5em" />
-              </div>
-              <div class="mt-3 flex flex-col">
-                <span class="text-2xl font-medium text-stone-900">$125.00</span>
-                <span class="text-sm text-stone-500"
-                  >Limit is $10k a month</span
-                >
-                <span class="text-emerald-500 mt-4"> Active </span>
               </div>
             </div>
           </div>
         </DashboardCard>
       </div>
     </div>
+
+    <!-- Card Cash Flow (Direita) -->
     <div :class="isCollapsed ? 'col-span-7' : 'col-span-7'">
       <div class="grid grid-cols-1 gap-3">
-        <DashboardCard> teste testando </DashboardCard>
+        <DashboardCard>
+          <div class="flex flex-col flex-1">
+            <!-- Header Alinhado -->
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <p class="font-medium text-xl leading-snug text-stone-900">
+                  Cash Flow
+                </p>
+                <p class="text-stone-900 text-3xl font-extrabold mt-0.5">
+                  R$ 60.362,99
+                </p>
+              </div>
+
+              <!-- Filtro de Período -->
+              <div
+                class="flex items-center gap-1 bg-stone-100 p-1 rounded-full text-xs font-semibold"
+              >
+                <button
+                  class="px-3 py-1.5 rounded-full text-stone-600 hover:text-stone-900 transition-colors"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-full bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-300"></span>
+                  Yearly
+                </button>
+              </div>
+            </div>
+
+            <!-- Gráfico -->
+            <Charts class="mt-6" />
+          </div>
+        </DashboardCard>
       </div>
     </div>
-
-    <!-- <div :class="isCollapsed ? 'col-span-8' : 'col-span-7'">
-      <DashboardCardCalendar />
-    </div>
-    <div :class="isCollapsed ? 'col-span-4' : 'col-span-5'">
-      <DashboardCardCalendar />
-    </div> -->
-    <!-- <div :class="isCollapsed ? 'col-span-4' : 'col-span-5'">
-      <DashboardCardWallet
-        v-for="(item, index) in itemsWallet"
-        :key="index"
-        :title="item.title"
-        :subtitle="item.subtitle"
-        :value="item.value"
-        :subtitleValue="item.subtitleValue"
-        :plans="item.plans"
-        :currency="item.currency"
-        :iconButton="item.iconButton"
-        :textButton="item.textButton"
-      />
-    </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
 const { isCollapsed } = useSidebar();
-
-const itemsWallet = [
-  {
-    title: "Smart Wallet",
-    subtitle: "Effortless saving goals",
-    value: "$1,234.56",
-    subtitleValue: "Total Saving",
-    currency: "BRL",
-    iconButton: "material-symbols:add-2-rounded",
-    textButton: "Add New",
-    plans: [
-      {
-        icon: "streamline:earth-airplane-solid",
-        name: "Travel",
-        colorIcon: "text-blue-600",
-      },
-      {
-        icon: "streamline:home-4-solid",
-        name: "Property",
-        colorIcon: "text-amber-600",
-      },
-      {
-        icon: "streamline:graduation-cap-solid",
-        name: "Education",
-        colorIcon: "text-rose-600",
-      },
-    ],
-  },
-];
 
 const itemsBallance = [
   {
@@ -258,5 +212,3 @@ const itemsBallance = [
   },
 ];
 </script>
-
-<style scoped></style>
